@@ -26,6 +26,8 @@ public class Main extends JFrame implements ActionListener {
     boolean newTrigger = false;
     boolean inf = true;
 
+    JTextField tf1, tf2, tf3, tf4;
+
     int trigger = InputEvent.BUTTON1_MASK;
     JButton button, button2, button3, button4, button5;
     JCheckBox check;
@@ -48,7 +50,7 @@ public class Main extends JFrame implements ActionListener {
         scanner = new Scanner(System.in);
 
 
-        JFrame frame = new JFrame("GroupLayoutExample");
+        JFrame frame = new JFrame("Click-a-tron");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container myPanel = frame.getContentPane();
 
@@ -61,43 +63,53 @@ public class Main extends JFrame implements ActionListener {
 
 
         button = new JButton("Start");
-        button2 = new JButton("Trigger: " + trigger);
-        button3 = new JButton("Delay: " + delay);
-        button4 = new JButton("Click Key: " + key);
-        button5 = new JButton("Click Num: " + clicks);
         check = new JCheckBox("Infinite");
-        //JTextField tf1 = new JTextField("hey");
-        //JLabel label1 = new JLabel("Trigger: " + trigger);
+        tf1 = new JTextField(trigger);
+        JLabel label1 = new JLabel("Trigger: ");
+
+        tf2 = new JTextField(delay);
+        JLabel label2 = new JLabel("Delay: ");
+
+        tf3 = new JTextField(key);
+        JLabel label3 = new JLabel("Key to click: ");
+
+        tf4 = new JTextField(clicks);
+        JLabel label4 = new JLabel("Click Num: ");
+
 
         groupLayout.setHorizontalGroup(groupLayout.createSequentialGroup()
-                .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.CENTER).addComponent(button).addComponent(button3).addComponent(button4))
-                .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.CENTER).addComponent(button5).addComponent(button2))
-                .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.CENTER).addComponent(check)));
+                .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.CENTER).addComponent(button)
+                        .addComponent(label1).addComponent(label2).addComponent(label3).addComponent(label4))
+                .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.CENTER).addComponent(tf1)
+                        .addComponent(tf2).addComponent(tf3).addComponent(tf4).addComponent(check)));
         groupLayout.setVerticalGroup(groupLayout.createSequentialGroup()
                 .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(button))
-                .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(button3).addComponent(button5).addComponent(check))
-                .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(button4).addComponent(button2)));
+                .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(tf1).addComponent(label1))
+                .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(label2).addComponent(tf2))
+                .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(label3).addComponent(tf3))
+                .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(label4).addComponent(tf4).addComponent(check)));
+
 
         button.setActionCommand("btn1");
-        button2.setActionCommand("btn2");
-        button3.setActionCommand("btn3");
-        button4.setActionCommand("btn4");
-        button5.setActionCommand("btn5");
         check.setActionCommand("chk");
-
+        tf1.setActionCommand("text1");
+        tf2.setActionCommand("text1");
+        tf3.setActionCommand("text1");
+        tf4.setActionCommand("text1");
 
         button.addActionListener((ActionListener) this);
-        button2.addActionListener((ActionListener) this);
-        button3.addActionListener((ActionListener) this);
-        button4.addActionListener((ActionListener) this);
-        button5.addActionListener((ActionListener) this);
         check.addActionListener((ActionListener) this);
+        tf1.addActionListener((ActionListener) this);
+        tf2.addActionListener((ActionListener) this);
+        tf3.addActionListener((ActionListener) this);
+        tf4.addActionListener((ActionListener) this);
+
+        tf1.setText(Integer.toString(trigger));
+        tf2.setText(Integer.toString(delay));
+        tf3.setText(Integer.toString(key));
+        tf4.setText(Integer.toString(clicks));
 
         button.setBackground(Color.green);
-        button2.setBackground(Color.white);
-        button3.setBackground(Color.white);
-        button4.setBackground(Color.white);
-        button5.setBackground(Color.white);
 
         frame.setVisible(true);
 
@@ -142,37 +154,18 @@ public class Main extends JFrame implements ActionListener {
                     button.setBackground(Color.red);
                     button.setText("Stop");
                     state = false;
+                    stTrigger();
+                    stClicks();
+                    stKey();
+                    stDelay();
                     clicking();
+                    state = true;
+                    button.setBackground(Color.green);
+                    button.setText("Start");
                 } else {
                     button.setBackground(Color.green);
                     button.setText("Start");
                     state = true;
-                }
-                break;
-
-            case "btn2":
-                System.out.println("Set Trigger");
-                stTrigger();
-                    button2.setText("Trigger: " + trigger);
-                break;
-
-            case "btn3":
-                System.out.println("Set Delay");
-                stDelay();
-                    button3.setText("Delay: " + delay);
-                break;
-
-            case "btn4":
-                System.out.println("Set Click Key");
-                stKey();
-                    button4.setText("Click Key: " + key);
-                break;
-
-            case "btn5":
-                System.out.println("Set Click Num");
-                if (newClick) {
-                    stClicks();
-                    button5.setText("Click Num: " + clicks);
                 }
                 break;
 
@@ -207,54 +200,69 @@ public class Main extends JFrame implements ActionListener {
     }
     */
 
-    public int getKeyEvent(final KeyEvent ev){
+    /*
+    public int getKeyEvent(final KeyEvent ev) {
         return ev.getKeyCode();
     }
 
-    public void coords(){
+    public void coords() {
         PointerInfo a = MouseInfo.getPointerInfo();
         Point b = a.getLocation();
         int x = (int) b.getX();
         int y = (int) b.getY();
     }
+*/
 
-    public void stClicks() {
-        if (newClick) {
-            System.out.println("enter num clicks");
-            clicks = scanner.nextInt();
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
         }
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 
+
     public void stTrigger() {
-        if (newTrigger) {
-            System.out.println("set trigger");
-            trigger = InputEvent.BUTTON1_MASK;
-        }
+        System.out.println(trigger);
+        trigger = InputEvent.BUTTON1_MASK;
     }
 
     public void stDelay() {
-        if (newDelay) {
-            System.out.println("enter delay");
-            delay = scanner.nextInt();
+        String num = tf2.getText();
+        System.out.println(num);
+
+        if (isNumeric(num)) {
+            delay = Integer.parseInt(num);
             clicker.setDelay(delay);
         }
     }
 
     public void stKey() {
-        if (newButton) {
-            System.out.println("enter key");
-            key = InputEvent.BUTTON1_MASK;
+        System.out.println(key);
+        key = InputEvent.BUTTON1_MASK;
+    }
+
+    public void stClicks() {
+        String num = tf4.getText();
+        System.out.println(num);
+
+        if (isNumeric(num)) {
+            clicks = Integer.parseInt(num);
         }
     }
 
+
     public void clicking() {
         if (!state) {
-            for (int i = 0; i < clicks; i++) {
+            for (int i = 0; !(i == clicks); i++) {
                 clicker.clickMouse(key);
                 System.out.println("clicking");
             }
             System.out.println("done");
-            state = true;
         }
     }
 
