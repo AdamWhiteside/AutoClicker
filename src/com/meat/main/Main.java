@@ -1,19 +1,13 @@
 package com.meat.main;
 
-import jdk.internal.util.xml.impl.Input;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
-import java.lang.Thread;
 import java.util.Scanner;
-import java.awt.event.KeyEvent;
 
-import static javafx.scene.input.KeyCode.getKeyCode;
 
 public class Main extends JFrame implements ActionListener {
 
@@ -24,15 +18,11 @@ public class Main extends JFrame implements ActionListener {
 
     boolean state = true;
     boolean newClick = true;
-    boolean newDelay = false;
-    boolean newButton = false;
-    boolean newTrigger = false;
-    boolean inf = true;
 
     JTextField tf1, tf2, tf3, tf4;
 
 
-    JButton button, button2, button3, button4, button5;
+    JButton button;
     JCheckBox check;
     int trigger = java.awt.event.KeyEvent.VK_A;
     static int key = InputEvent.BUTTON1_MASK;
@@ -57,7 +47,7 @@ public class Main extends JFrame implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container myPanel = frame.getContentPane();
 
-        frame.setSize(600, 600);
+        frame.setSize(260, 200);
 
         GroupLayout groupLayout = new GroupLayout(myPanel);
         groupLayout.setAutoCreateGaps(true);
@@ -84,7 +74,8 @@ public class Main extends JFrame implements ActionListener {
                 .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.CENTER).addComponent(button)
                         .addComponent(label1).addComponent(label2).addComponent(label3).addComponent(label4))
                 .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.CENTER).addComponent(tf1)
-                        .addComponent(tf2).addComponent(tf3).addComponent(tf4).addComponent(check)));
+                        .addComponent(tf2).addComponent(tf3).addComponent(tf4))
+        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.CENTER).addComponent(check)));
         groupLayout.setVerticalGroup(groupLayout.createSequentialGroup()
                 .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(button))
                 .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(tf1).addComponent(label1))
@@ -100,12 +91,12 @@ public class Main extends JFrame implements ActionListener {
         tf3.setActionCommand("text1");
         tf4.setActionCommand("text1");
 
-        button.addActionListener((ActionListener) this);
-        check.addActionListener((ActionListener) this);
-        tf1.addActionListener((ActionListener) this);
-        tf2.addActionListener((ActionListener) this);
-        tf3.addActionListener((ActionListener) this);
-        tf4.addActionListener((ActionListener) this);
+        button.addActionListener(this);
+        check.addActionListener(this);
+        tf1.addActionListener(this);
+        tf2.addActionListener(this);
+        tf3.addActionListener(this);
+        tf4.addActionListener(this);
 
         tf1.setText(ConvertVKint(trigger));
         tf2.setText(Integer.toString(delay));
@@ -353,107 +344,81 @@ public class Main extends JFrame implements ActionListener {
     public int ConvertVK(String character) {
         switch (character) {
             case "a":
-                return (java.awt.event.KeyEvent.VK_A);
-            case "b":
-                return (java.awt.event.KeyEvent.VK_B);
-            case "c":
-                return (java.awt.event.KeyEvent.VK_C);
-            case "d":
-                return (java.awt.event.KeyEvent.VK_D);
-            case "e":
-                return (java.awt.event.KeyEvent.VK_E);
-            case "f":
-                return (java.awt.event.KeyEvent.VK_F);
-            case "g":
-                return (java.awt.event.KeyEvent.VK_G);
-            case "h":
-                return (java.awt.event.KeyEvent.VK_H);
-            case "i":
-                return (java.awt.event.KeyEvent.VK_I);
-            case "j":
-                return (java.awt.event.KeyEvent.VK_J);
-            case "k":
-                return (java.awt.event.KeyEvent.VK_K);
-            case "l":
-                return (java.awt.event.KeyEvent.VK_L);
-            case "m":
-                return (java.awt.event.KeyEvent.VK_M);
-            case "n":
-                return (java.awt.event.KeyEvent.VK_N);
-            case "o":
-                return (java.awt.event.KeyEvent.VK_O);
-            case "p":
-                return (java.awt.event.KeyEvent.VK_P);
-            case "q":
-                return (java.awt.event.KeyEvent.VK_Q);
-            case "r":
-                return (java.awt.event.KeyEvent.VK_R);
-            case "s":
-                return (java.awt.event.KeyEvent.VK_S);
-            case "t":
-                return (java.awt.event.KeyEvent.VK_T);
-            case "u":
-                return (java.awt.event.KeyEvent.VK_U);
-            case "v":
-                return (java.awt.event.KeyEvent.VK_V);
-            case "w":
-                return (java.awt.event.KeyEvent.VK_W);
-            case "x":
-                return (java.awt.event.KeyEvent.VK_X);
-            case "y":
-                return (java.awt.event.KeyEvent.VK_Y);
-            case "z":
-                return (java.awt.event.KeyEvent.VK_Z);
             case "A":
                 return (java.awt.event.KeyEvent.VK_A);
+            case "b":
             case "B":
                 return (java.awt.event.KeyEvent.VK_B);
+            case "c":
             case "C":
                 return (java.awt.event.KeyEvent.VK_C);
+            case "d":
             case "D":
                 return (java.awt.event.KeyEvent.VK_D);
+            case "e":
             case "E":
                 return (java.awt.event.KeyEvent.VK_E);
+            case "f":
             case "F":
                 return (java.awt.event.KeyEvent.VK_F);
+            case "g":
             case "G":
                 return (java.awt.event.KeyEvent.VK_G);
+            case "h":
             case "H":
                 return (java.awt.event.KeyEvent.VK_H);
+            case "i":
             case "I":
                 return (java.awt.event.KeyEvent.VK_I);
+            case "j":
             case "J":
                 return (java.awt.event.KeyEvent.VK_J);
+            case "k":
             case "K":
                 return (java.awt.event.KeyEvent.VK_K);
+            case "l":
             case "L":
                 return (java.awt.event.KeyEvent.VK_L);
+            case "m":
             case "M":
                 return (java.awt.event.KeyEvent.VK_M);
+            case "n":
             case "N":
                 return (java.awt.event.KeyEvent.VK_N);
+            case "o":
             case "O":
                 return (java.awt.event.KeyEvent.VK_O);
+            case "p":
             case "P":
                 return (java.awt.event.KeyEvent.VK_P);
+            case "q":
             case "Q":
                 return (java.awt.event.KeyEvent.VK_Q);
+            case "r":
             case "R":
                 return (java.awt.event.KeyEvent.VK_R);
+            case "s":
             case "S":
                 return (java.awt.event.KeyEvent.VK_S);
+            case "t":
             case "T":
                 return (java.awt.event.KeyEvent.VK_T);
+            case "u":
             case "U":
                 return (java.awt.event.KeyEvent.VK_U);
+            case "v":
             case "V":
                 return (java.awt.event.KeyEvent.VK_V);
+            case "w":
             case "W":
                 return (java.awt.event.KeyEvent.VK_W);
+            case "x":
             case "X":
                 return (java.awt.event.KeyEvent.VK_X);
+            case "y":
             case "Y":
                 return (java.awt.event.KeyEvent.VK_Y);
+            case "z":
             case "Z":
                 return (java.awt.event.KeyEvent.VK_Z);
             case "`":
