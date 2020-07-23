@@ -30,6 +30,18 @@ public class AutoClicker {
         }
     }
 
+    //clicks mouse takes in button to click
+    public void pressKey(int button) {
+        try {
+            robot.keyPress(button);
+            robot.delay(250);
+            robot.keyRelease(button);
+            robot.delay(delay);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     //sets the delay between clicks
     public void setDelay(int delay) {
         if (delay > 0) {

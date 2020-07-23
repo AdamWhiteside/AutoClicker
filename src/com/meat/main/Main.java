@@ -11,6 +11,9 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.lang.Thread;
 import java.util.Scanner;
+import java.awt.event.KeyEvent;
+
+import static javafx.scene.input.KeyCode.getKeyCode;
 
 public class Main extends JFrame implements ActionListener {
 
@@ -28,9 +31,10 @@ public class Main extends JFrame implements ActionListener {
 
     JTextField tf1, tf2, tf3, tf4;
 
-    int trigger = InputEvent.BUTTON1_MASK;
+
     JButton button, button2, button3, button4, button5;
     JCheckBox check;
+    int trigger = java.awt.event.KeyEvent.VK_A;
     static int key = InputEvent.BUTTON1_MASK;
     static int clicks = 10;
     static int delay = 10;
@@ -48,7 +52,6 @@ public class Main extends JFrame implements ActionListener {
     //JFrame
     private Main() {
         scanner = new Scanner(System.in);
-
 
         JFrame frame = new JFrame("Click-a-tron");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -104,9 +107,9 @@ public class Main extends JFrame implements ActionListener {
         tf3.addActionListener((ActionListener) this);
         tf4.addActionListener((ActionListener) this);
 
-        tf1.setText(Integer.toString(trigger));
+        tf1.setText(ConvertVKint(trigger));
         tf2.setText(Integer.toString(delay));
-        tf3.setText(Integer.toString(key));
+        tf3.setText(ConvertVKint(key));
         tf4.setText(Integer.toString(clicks));
 
         button.setBackground(Color.green);
@@ -170,15 +173,12 @@ public class Main extends JFrame implements ActionListener {
                 break;
 
             case "chk":
-                System.out.println("enter key");
                 if (newClick) {
                     newClick = false;
-                    button5.setBackground(Color.gray);
-                    button5.setText("Click Num: inf");
                     clicks = -1;
+                    tf4.setText(Integer.toString(clicks));
                 } else {
                     newClick = true;
-                    button5.setBackground(Color.white);
                 }
                 break;
         }
@@ -213,6 +213,332 @@ public class Main extends JFrame implements ActionListener {
     }
 */
 
+    public String ConvertVKint(int character) {
+        switch (character) {
+            case (java.awt.event.KeyEvent.VK_A):
+                return "a";
+            case (java.awt.event.KeyEvent.VK_B):
+                return "b";
+            case (java.awt.event.KeyEvent.VK_C):
+                return "c";
+            case (java.awt.event.KeyEvent.VK_D):
+                return "d";
+            case (java.awt.event.KeyEvent.VK_E):
+                return "e";
+            case (java.awt.event.KeyEvent.VK_F):
+                return "f";
+            case (java.awt.event.KeyEvent.VK_G):
+                return "g";
+            case (java.awt.event.KeyEvent.VK_H):
+                return "h";
+            case (java.awt.event.KeyEvent.VK_I):
+                return "i";
+            case (java.awt.event.KeyEvent.VK_J):
+                return "j";
+            case (java.awt.event.KeyEvent.VK_K):
+                return "k";
+            case (java.awt.event.KeyEvent.VK_L):
+                return "l";
+            case (java.awt.event.KeyEvent.VK_M):
+                return "m";
+            case (java.awt.event.KeyEvent.VK_N):
+                return "n";
+            case (java.awt.event.KeyEvent.VK_O):
+                return "o";
+            case (java.awt.event.KeyEvent.VK_P):
+                return "p";
+            case (java.awt.event.KeyEvent.VK_Q):
+                return "q";
+            case (java.awt.event.KeyEvent.VK_R):
+                return "r";
+            case (java.awt.event.KeyEvent.VK_S):
+                return "s";
+            case (java.awt.event.KeyEvent.VK_T):
+                return "t";
+            case (java.awt.event.KeyEvent.VK_U):
+                return "u";
+            case (java.awt.event.KeyEvent.VK_V):
+                return "v";
+            case (java.awt.event.KeyEvent.VK_W):
+                return "w";
+            case (java.awt.event.KeyEvent.VK_X):
+                return "x";
+            case (java.awt.event.KeyEvent.VK_Y):
+                return "y";
+            case (java.awt.event.KeyEvent.VK_Z):
+                return "z";
+            case (java.awt.event.KeyEvent.VK_BACK_QUOTE):
+                return "`";
+            case (java.awt.event.KeyEvent.VK_0):
+                return "0";
+            case (java.awt.event.KeyEvent.VK_1):
+                return "1";
+            case (java.awt.event.KeyEvent.VK_2):
+                return "2";
+            case (java.awt.event.KeyEvent.VK_3):
+                return "3";
+            case (java.awt.event.KeyEvent.VK_4):
+                return "4";
+            case (java.awt.event.KeyEvent.VK_5):
+                return "5";
+            case (java.awt.event.KeyEvent.VK_6):
+                return "6";
+            case (java.awt.event.KeyEvent.VK_7):
+                return "7";
+            case (java.awt.event.KeyEvent.VK_8):
+                return "8";
+            case (java.awt.event.KeyEvent.VK_9):
+                return "9";
+            case (java.awt.event.KeyEvent.VK_MINUS):
+                return "-";
+            case (java.awt.event.KeyEvent.VK_EQUALS):
+                return "=";
+            case (java.awt.event.KeyEvent.VK_EXCLAMATION_MARK):
+                return "!";
+            case (java.awt.event.KeyEvent.VK_AT):
+                return "@";
+            case (java.awt.event.KeyEvent.VK_NUMBER_SIGN):
+                return "#";
+            case (java.awt.event.KeyEvent.VK_DOLLAR):
+                return "$";
+            case (java.awt.event.KeyEvent.VK_CIRCUMFLEX):
+                return "^";
+            case (java.awt.event.KeyEvent.VK_AMPERSAND):
+                return "&";
+            case (java.awt.event.KeyEvent.VK_ASTERISK):
+                return "*";
+            case (java.awt.event.KeyEvent.VK_LEFT_PARENTHESIS):
+                return "(";
+            case (java.awt.event.KeyEvent.VK_RIGHT_PARENTHESIS):
+                return ")";
+            case (java.awt.event.KeyEvent.VK_UNDERSCORE):
+                return "_";
+            case (java.awt.event.KeyEvent.VK_PLUS):
+                return "+";
+            case (java.awt.event.KeyEvent.VK_TAB):
+                return "\t";
+            case (java.awt.event.KeyEvent.VK_ENTER):
+                return "\n";
+            case (java.awt.event.KeyEvent.VK_OPEN_BRACKET):
+                return "[";
+            case (java.awt.event.KeyEvent.VK_CLOSE_BRACKET):
+                return "]";
+            case (java.awt.event.KeyEvent.VK_BACK_SLASH):
+                return "\\";
+            case (java.awt.event.KeyEvent.VK_SEMICOLON):
+                return ";";
+            case (java.awt.event.KeyEvent.VK_COLON):
+                return ":";
+            case (java.awt.event.KeyEvent.VK_QUOTE):
+                return "'";
+            case (java.awt.event.KeyEvent.VK_QUOTEDBL):
+                return "\"";
+            case (java.awt.event.KeyEvent.VK_COMMA):
+                return ",";
+            case (java.awt.event.KeyEvent.VK_PERIOD):
+                return ".";
+            case (java.awt.event.KeyEvent.VK_SLASH):
+                return "/";
+            case InputEvent.BUTTON1_MASK:
+                return "Lmb";
+            case InputEvent.BUTTON2_MASK:
+                return "Mmb";
+            case InputEvent.BUTTON3_MASK:
+                return "Rmb";
+            default:
+                throw new IllegalArgumentException("Cannot type character " + character);
+        }
+    }
+
+    public int ConvertVK(String character) {
+        switch (character) {
+            case "a":
+                return (java.awt.event.KeyEvent.VK_A);
+            case "b":
+                return (java.awt.event.KeyEvent.VK_B);
+            case "c":
+                return (java.awt.event.KeyEvent.VK_C);
+            case "d":
+                return (java.awt.event.KeyEvent.VK_D);
+            case "e":
+                return (java.awt.event.KeyEvent.VK_E);
+            case "f":
+                return (java.awt.event.KeyEvent.VK_F);
+            case "g":
+                return (java.awt.event.KeyEvent.VK_G);
+            case "h":
+                return (java.awt.event.KeyEvent.VK_H);
+            case "i":
+                return (java.awt.event.KeyEvent.VK_I);
+            case "j":
+                return (java.awt.event.KeyEvent.VK_J);
+            case "k":
+                return (java.awt.event.KeyEvent.VK_K);
+            case "l":
+                return (java.awt.event.KeyEvent.VK_L);
+            case "m":
+                return (java.awt.event.KeyEvent.VK_M);
+            case "n":
+                return (java.awt.event.KeyEvent.VK_N);
+            case "o":
+                return (java.awt.event.KeyEvent.VK_O);
+            case "p":
+                return (java.awt.event.KeyEvent.VK_P);
+            case "q":
+                return (java.awt.event.KeyEvent.VK_Q);
+            case "r":
+                return (java.awt.event.KeyEvent.VK_R);
+            case "s":
+                return (java.awt.event.KeyEvent.VK_S);
+            case "t":
+                return (java.awt.event.KeyEvent.VK_T);
+            case "u":
+                return (java.awt.event.KeyEvent.VK_U);
+            case "v":
+                return (java.awt.event.KeyEvent.VK_V);
+            case "w":
+                return (java.awt.event.KeyEvent.VK_W);
+            case "x":
+                return (java.awt.event.KeyEvent.VK_X);
+            case "y":
+                return (java.awt.event.KeyEvent.VK_Y);
+            case "z":
+                return (java.awt.event.KeyEvent.VK_Z);
+            case "A":
+                return (java.awt.event.KeyEvent.VK_A);
+            case "B":
+                return (java.awt.event.KeyEvent.VK_B);
+            case "C":
+                return (java.awt.event.KeyEvent.VK_C);
+            case "D":
+                return (java.awt.event.KeyEvent.VK_D);
+            case "E":
+                return (java.awt.event.KeyEvent.VK_E);
+            case "F":
+                return (java.awt.event.KeyEvent.VK_F);
+            case "G":
+                return (java.awt.event.KeyEvent.VK_G);
+            case "H":
+                return (java.awt.event.KeyEvent.VK_H);
+            case "I":
+                return (java.awt.event.KeyEvent.VK_I);
+            case "J":
+                return (java.awt.event.KeyEvent.VK_J);
+            case "K":
+                return (java.awt.event.KeyEvent.VK_K);
+            case "L":
+                return (java.awt.event.KeyEvent.VK_L);
+            case "M":
+                return (java.awt.event.KeyEvent.VK_M);
+            case "N":
+                return (java.awt.event.KeyEvent.VK_N);
+            case "O":
+                return (java.awt.event.KeyEvent.VK_O);
+            case "P":
+                return (java.awt.event.KeyEvent.VK_P);
+            case "Q":
+                return (java.awt.event.KeyEvent.VK_Q);
+            case "R":
+                return (java.awt.event.KeyEvent.VK_R);
+            case "S":
+                return (java.awt.event.KeyEvent.VK_S);
+            case "T":
+                return (java.awt.event.KeyEvent.VK_T);
+            case "U":
+                return (java.awt.event.KeyEvent.VK_U);
+            case "V":
+                return (java.awt.event.KeyEvent.VK_V);
+            case "W":
+                return (java.awt.event.KeyEvent.VK_W);
+            case "X":
+                return (java.awt.event.KeyEvent.VK_X);
+            case "Y":
+                return (java.awt.event.KeyEvent.VK_Y);
+            case "Z":
+                return (java.awt.event.KeyEvent.VK_Z);
+            case "`":
+                return (java.awt.event.KeyEvent.VK_BACK_QUOTE);
+            case "0":
+                return (java.awt.event.KeyEvent.VK_0);
+            case "1":
+                return (java.awt.event.KeyEvent.VK_1);
+            case "2":
+                return (java.awt.event.KeyEvent.VK_2);
+            case "3":
+                return (java.awt.event.KeyEvent.VK_3);
+            case "4":
+                return (java.awt.event.KeyEvent.VK_4);
+            case "5":
+                return (java.awt.event.KeyEvent.VK_5);
+            case "6":
+                return (java.awt.event.KeyEvent.VK_6);
+            case "7":
+                return (java.awt.event.KeyEvent.VK_7);
+            case "8":
+                return (java.awt.event.KeyEvent.VK_8);
+            case "9":
+                return (java.awt.event.KeyEvent.VK_9);
+            case "-":
+                return (java.awt.event.KeyEvent.VK_MINUS);
+            case "=":
+                return (java.awt.event.KeyEvent.VK_EQUALS);
+            case "!":
+                return (java.awt.event.KeyEvent.VK_EXCLAMATION_MARK);
+            case "@":
+                return (java.awt.event.KeyEvent.VK_AT);
+            case "#":
+                return (java.awt.event.KeyEvent.VK_NUMBER_SIGN);
+            case "$":
+                return (java.awt.event.KeyEvent.VK_DOLLAR);
+            case "^":
+                return (java.awt.event.KeyEvent.VK_CIRCUMFLEX);
+            case "&":
+                return (java.awt.event.KeyEvent.VK_AMPERSAND);
+            case "*":
+                return (java.awt.event.KeyEvent.VK_ASTERISK);
+            case "(":
+                return (java.awt.event.KeyEvent.VK_LEFT_PARENTHESIS);
+            case ")":
+                return (java.awt.event.KeyEvent.VK_RIGHT_PARENTHESIS);
+            case "_":
+                return (java.awt.event.KeyEvent.VK_UNDERSCORE);
+            case "+":
+                return (java.awt.event.KeyEvent.VK_PLUS);
+            case "\t":
+                return (java.awt.event.KeyEvent.VK_TAB);
+            case "\n":
+                return (java.awt.event.KeyEvent.VK_ENTER);
+            case "[":
+                return (java.awt.event.KeyEvent.VK_OPEN_BRACKET);
+            case "]":
+                return (java.awt.event.KeyEvent.VK_CLOSE_BRACKET);
+            case "\\":
+                return (java.awt.event.KeyEvent.VK_BACK_SLASH);
+            case ";":
+                return (java.awt.event.KeyEvent.VK_SEMICOLON);
+            case ":":
+                return (java.awt.event.KeyEvent.VK_COLON);
+            case "\"":
+                return (java.awt.event.KeyEvent.VK_QUOTE);
+            case "'":
+                return (java.awt.event.KeyEvent.VK_QUOTEDBL);
+            case ",":
+                return (java.awt.event.KeyEvent.VK_COMMA);
+            case ".":
+                return (java.awt.event.KeyEvent.VK_PERIOD);
+            case "/":
+                return (java.awt.event.KeyEvent.VK_SLASH);
+            case "Lmb":
+                return InputEvent.BUTTON1_MASK;
+            case "Mmb":
+                return InputEvent.BUTTON2_MASK;
+            case "Rmb":
+                return InputEvent.BUTTON3_MASK;
+            default:
+                throw new IllegalArgumentException("Cannot type character " + character);
+        }
+    }
+
     public static boolean isNumeric(String strNum) {
         if (strNum == null) {
             return false;
@@ -228,7 +554,7 @@ public class Main extends JFrame implements ActionListener {
 
     public void stTrigger() {
         System.out.println(trigger);
-        trigger = InputEvent.BUTTON1_MASK;
+        trigger = ConvertVK(tf1.getText());
     }
 
     public void stDelay() {
@@ -243,7 +569,7 @@ public class Main extends JFrame implements ActionListener {
 
     public void stKey() {
         System.out.println(key);
-        key = InputEvent.BUTTON1_MASK;
+        key = ConvertVK(tf3.getText());
     }
 
     public void stClicks() {
@@ -259,8 +585,13 @@ public class Main extends JFrame implements ActionListener {
     public void clicking() {
         if (!state) {
             for (int i = 0; !(i == clicks); i++) {
-                clicker.clickMouse(key);
-                System.out.println("clicking");
+                if (key == InputEvent.BUTTON1_MASK || key == InputEvent.BUTTON2_MASK || key == InputEvent.BUTTON3_MASK) {
+                    clicker.clickMouse(key);
+                    System.out.println("clicking");
+                } else {
+                    clicker.pressKey(key);
+                    System.out.println("pressing");
+                }
             }
             System.out.println("done");
         }
